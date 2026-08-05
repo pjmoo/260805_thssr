@@ -1,5 +1,6 @@
 package org.example.thssr.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.thssr.dto.BookFormDTO;
 import org.example.thssr.service.BookService;
@@ -42,7 +43,8 @@ public class BookController {
 
     @PostMapping
     public String createBook(
-            @ModelAttribute("bookForm") BookFormDTO bookFormDTO) {
+//            @ModelAttribute("bookForm") BookFormDTO bookFormDTO) {
+            @Valid @ModelAttribute("bookForm") BookFormDTO bookFormDTO) {
         bookService.createBook(bookFormDTO.toEntity());
         return "redirect:/books";
     }
