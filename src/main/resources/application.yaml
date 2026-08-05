@@ -1,6 +1,9 @@
 spring:
   application:
     name: thssr
+custom:
+  name: hello
+  title: world
 ---
 spring:
   config:

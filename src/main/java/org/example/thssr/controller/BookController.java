@@ -2,6 +2,7 @@ package org.example.thssr.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.thssr.config.CustomProperties;
 import org.example.thssr.dto.BookFormDTO;
 import org.example.thssr.dto.Update;
 import org.example.thssr.service.BookService;
@@ -20,6 +21,8 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
+    private final CustomProperties customProperties;
+
     @GetMapping
 //    public String page(Model model, @RequestParam(required = false) String keyword) {
     public String page(Model model, @RequestParam(defaultValue = "") String keyword) {
@@ -29,6 +32,7 @@ public class BookController {
 //            model.addAttribute("books", bookService.findAll());
 //        }
         model.addAttribute("books", bookService.search(keyword));
+        model.addAttribute("customProperties", customProperties);
         return "index";
     }
 

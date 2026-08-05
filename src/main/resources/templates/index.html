@@ -11,6 +11,9 @@
 <body>
 <h1>김자바네 서점</h1>
 <section>
+    <p>[[${customProperties}]]</p>
+</section>
+<section>
     <a th:href="@{/books/new}">등록</a>
 </section>
 <section th:if="${msg != null}">
