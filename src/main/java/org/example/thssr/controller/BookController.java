@@ -6,6 +6,7 @@ import org.example.thssr.dto.BookFormDTO;
 import org.example.thssr.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,10 +42,15 @@ public class BookController {
         return "form";
     }
 
-    @PostMapping
+    //    @PostMapping
+    @PostMapping("/new")
     public String createBook(
 //            @ModelAttribute("bookForm") BookFormDTO bookFormDTO) {
-            @Valid @ModelAttribute("bookForm") BookFormDTO bookFormDTO) {
+            @Valid @ModelAttribute("bookForm") BookFormDTO bookFormDTO,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "form"; // -> 요청 객체가 유지가 되면서 이전에 입력한 값이 남아있게 됨
+        }
         bookService.createBook(bookFormDTO.toEntity());
         return "redirect:/books";
     }

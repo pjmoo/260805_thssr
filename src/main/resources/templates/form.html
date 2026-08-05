@@ -14,25 +14,37 @@
     <a th:href="@{/books}">목록으로</a>
 </section>
 <section>
+    <!--          th:action="@{${bookId == null ? '/books' : '/books/' + bookId}}"-->
     <form style="display: flex; flex-direction: column; gap: 8px; align-items: center;"
           th:method="post"
-          th:action="@{${bookId == null ? '/books' : '/books/' + bookId}}"
+          th:action="@{${bookId == null ? '/books/new' : '/books/' + bookId}}"
           th:object="${bookForm}">
+        <div th:if="${#fields.hasAnyErrors()}">
+            <mark>검증을 통과하지 못했습니다!</mark>
+        </div>
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+        </div>
         <label>
             제목 : <input th:field="*{title}">
         </label>
+        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
         <label>
             저자 : <input th:field="*{author}">
         </label>
+        <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></p>
         <label>
             가격 : <input type="number" th:field="*{price}">
         </label>
+        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
         <label>
             할인가 : <input type="number" th:field="*{discountPrice}">
         </label>
+        <!--        <p th:if="${#fields.hasErrors('discountPrice')}" th:errors="*{discountPrice}"></p>-->
         <label>
             판매여부 : <input type="checkbox" th:field="*{isAvailable}">
         </label>
+        <!--        <p th:if="${#fields.hasErrors('isAvailable')}" th:errors="*{isAvailable}"></p>-->
         <label>
             카테고리 : <select th:field="*{category}">
             <option th:each="cat : ${categories}"
