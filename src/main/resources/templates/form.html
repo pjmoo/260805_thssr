@@ -16,7 +16,7 @@
 <section>
     <form style="display: flex; flex-direction: column; gap: 8px; align-items: center;"
           th:method="post"
-          th:action="@{/books}"
+          th:action="@{${bookId == null ? '/books' : '/books/' + bookId}}"
           th:object="${bookForm}">
         <label>
             제목 : <input th:field="*{title}">
@@ -40,7 +40,8 @@
                     th:text="${cat}"></option>
         </select>
         </label>
-        <button>등록</button>
+        <!--        <button>등록</button>-->
+        <button th:text="${bookId == null ? '등록' : '수정'}"></button>
     </form>
 </section>
 </body>

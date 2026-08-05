@@ -40,6 +40,8 @@
         <label>
             수정일시 : <span th:text="*{updatedAt}"></span>
         </label>
+        <a th:href="@{/books/{id}/edit(id=${bookData.id})}">수정</a>
+        <a th:href="@{/books/{id}/delete(id=${bookData.id})}">삭제</a>
     </div>
 </section>
 </body>

@@ -45,4 +45,18 @@ public class BookController {
         model.addAttribute("bookData", bookService.findById(id));
         return "detail";
     }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable long id, Model model) {
+        model.addAttribute("bookForm",
+                BookFormDTO.fromEntity(bookService.findById(id)));
+        model.addAttribute("bookId", id);
+        return "form";
+    }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable long id) {
+        bookService.deleteBook(id);
+        return "redirect:/books";
+    }
 }

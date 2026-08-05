@@ -27,4 +27,9 @@ public class BookService {
     public BookEntity findById(long id) {
         return bookRepository.findById(id);
     }
+
+    @Transactional
+    public void deleteBook(long id) {
+
+    }
 }
