@@ -8,4 +8,6 @@ public abstract class BookRepository {
     public abstract void createBook(BookEntity entity);
 
     public abstract List<BookEntity> findAll();
+
+    public abstract BookEntity findById(long id);
 }

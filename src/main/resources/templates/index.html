@@ -18,12 +18,13 @@
         <p th:text="${book.id}"></p>
         <p th:text="${book.title}"></p>
         <p th:text="${book.author}"></p>
-        <p th:text="${book.price}"></p>
-        <p th:text="${book.discountPrice}"></p>
-        <p th:text="${book.isAvailable}"></p>
-        <p th:text="${book.category}"></p>
-        <p th:text="${book.createdAt}"></p>
-        <p th:text="${book.updatedAt}"></p>
+        <a th:href="@{/books/{id}(id=${book.id})}">자세히보기</a>
+        <!--        <p th:text="${book.price}"></p>-->
+        <!--        <p th:text="${book.discountPrice}"></p>-->
+        <!--        <p th:text="${book.isAvailable}"></p>-->
+        <!--        <p th:text="${book.category}"></p>-->
+        <!--        <p th:text="${book.createdAt}"></p>-->
+        <!--        <p th:text="${book.updatedAt}"></p>-->
     </div>
 </section>
 </body>

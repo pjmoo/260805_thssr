@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>김자바네 서점</title>
+</head>
+<body>
+<h1>김자바네 서점</h1>
+<section>
+    <a th:href="@{/books}">목록으로</a>
+    <a th:href="@{/books/new}">등록</a>
+</section>
+<section>
+    <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;"
+         th:object="${bookData}">
+        <label>
+            제목 : <span th:text="*{title}"></span>
+        </label>
+        <label>
+            저자 : <span th:text="*{author}"></span>
+        </label>
+        <label>
+            가격 : <span th:text="*{price}"></span>
+        </label>
+        <label>
+            할인가 : <span th:text="*{discountPrice}"></span>
+        </label>
+        <label>
+            판매여부 : <span th:text="*{isAvailable}"></span>
+        </label>
+        <label>
+            카테고리 : <span th:text="*{category}"></span>
+        </label>
+        <label>
+            등록일시 : <span th:text="*{createdAt}"></span>
+        </label>
+        <label>
+            수정일시 : <span th:text="*{updatedAt}"></span>
+        </label>
+    </div>
+</section>
+</body>
+</html>

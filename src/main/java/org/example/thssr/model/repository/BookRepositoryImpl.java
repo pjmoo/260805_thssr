@@ -20,4 +20,9 @@ public class BookRepositoryImpl extends BookRepository {
     public List<BookEntity> findAll() {
         return bookJpaRepository.findAll();
     }
+
+    @Override
+    public BookEntity findById(long id) {
+        return bookJpaRepository.findById(id).orElseThrow();
+    }
 }
