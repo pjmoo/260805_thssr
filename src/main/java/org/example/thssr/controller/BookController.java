@@ -79,8 +79,8 @@ public class BookController {
     @PostMapping("/{id}/edit")
     public String updateBook(@PathVariable long id,
                              @Validated(Update.class) @ModelAttribute("bookForm") BookFormDTO bookFormDTO,
+                             BindingResult bindingResult, // 이 위치
                              RedirectAttributes redirectAttributes,
-                             BindingResult bindingResult,
                              Model model) {
         System.out.println("BookController.updateBook");
         if (bindingResult.hasErrors()) {
