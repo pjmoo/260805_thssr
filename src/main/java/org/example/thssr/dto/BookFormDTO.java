@@ -10,8 +10,11 @@ import org.example.thssr.model.entity.BookEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookFormDTO {
-    @NotBlank(message = "제목은 필수입니다")
-    @Size(min = 1, max = 50, message = "제목은 1~50자 이내로 입력해주세요")
+    //    @NotBlank(message = "제목은 필수입니다")
+//    @Size(min = 1, max = 50, message = "제목은 1~50자 이내로 입력해주세요")
+    @NotBlank
+//    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "{Size.bookForm.title2}")
     private String title;
     // ...
     @NotEmpty(message = "저자는 필수입니다")
@@ -20,7 +23,8 @@ public class BookFormDTO {
     @NotNull(message = "가격은 필수입니다")
     @PositiveOrZero(message = "가격은 0 이상이어야 합니다")
 //    @Min()
-    @Max(value = 1_000_000, message = "가격은 100만원 이하여야 합니다")
+//    @Max(value = 1_000_000, message = "가격은 100만원 이하여야 합니다")
+    @Max(value = 1_000_000)
     private Integer price;
     private int discountPrice;
     private Boolean isAvailable;

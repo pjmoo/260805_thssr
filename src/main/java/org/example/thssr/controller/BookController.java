@@ -48,6 +48,10 @@ public class BookController {
 //            @ModelAttribute("bookForm") BookFormDTO bookFormDTO) {
             @Valid @ModelAttribute("bookForm") BookFormDTO bookFormDTO,
             BindingResult bindingResult) {
+        // 전역 오류
+        if (bookFormDTO.getAuthor().equals("김자바") || bookFormDTO.getTitle().equals("김자바")) {
+            bindingResult.reject("author.noKimjava", "김자바는 등록할 수 없습니다");
+        }
         if (bindingResult.hasErrors()) {
             return "form"; // -> 요청 객체가 유지가 되면서 이전에 입력한 값이 남아있게 됨
         }
