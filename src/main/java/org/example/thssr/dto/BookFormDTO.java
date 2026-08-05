@@ -17,7 +17,7 @@ public class BookFormDTO {
     @Size(min = 1, max = 50, message = "{Size.bookForm.title2}")
     private String title;
     // ...
-    @NotEmpty(message = "저자는 필수입니다")
+    @NotEmpty(message = "저자는 필수입니다", groups = Update.class)
     private String author;
     //    private int price;
     @NotNull(message = "가격은 필수입니다")
@@ -27,6 +27,7 @@ public class BookFormDTO {
     @Max(value = 1_000_000)
     private Integer price;
     private int discountPrice;
+    @NotNull(groups = Update.class)
     private Boolean isAvailable;
     private String category;
 
@@ -47,7 +48,7 @@ public class BookFormDTO {
                 .author(entity.getAuthor())
                 .price(entity.getPrice())
                 .discountPrice(entity.getDiscountPrice())
-                .isAvailable(entity.isAvailable())
+                .isAvailable(entity.getIsAvailable())
                 .category(entity.getCategory())
                 .build();
     }

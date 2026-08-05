@@ -16,6 +16,7 @@ public class BookEntity extends BaseEntity {
     private String author;
     private int price;
     private int discountPrice;
-    private boolean isAvailable;
+    //    private boolean isAvailable;
+    private Boolean isAvailable;
     private String category;
 }

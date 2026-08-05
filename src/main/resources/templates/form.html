@@ -17,7 +17,7 @@
     <!--          th:action="@{${bookId == null ? '/books' : '/books/' + bookId}}"-->
     <form style="display: flex; flex-direction: column; gap: 8px; align-items: center;"
           th:method="post"
-          th:action="@{${bookId == null ? '/books/new' : '/books/' + bookId}}"
+          th:action="@{${bookId == null ? '/books/new' : '/books/' + bookId + '/edit'}}"
           th:object="${bookForm}">
         <div th:if="${#fields.hasAnyErrors()}">
             <mark>검증을 통과하지 못했습니다!</mark>
@@ -41,7 +41,7 @@
             할인가 : <input type="number" th:field="*{discountPrice}">
         </label>
         <!--        <p th:if="${#fields.hasErrors('discountPrice')}" th:errors="*{discountPrice}"></p>-->
-        <label>
+        <label th:if="${bookId != null}">
             판매여부 : <input type="checkbox" th:field="*{isAvailable}">
         </label>
         <!--        <p th:if="${#fields.hasErrors('isAvailable')}" th:errors="*{isAvailable}"></p>-->

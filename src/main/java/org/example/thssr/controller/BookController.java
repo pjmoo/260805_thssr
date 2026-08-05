@@ -3,10 +3,12 @@ package org.example.thssr.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.thssr.dto.BookFormDTO;
+import org.example.thssr.dto.Update;
 import org.example.thssr.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -73,10 +75,18 @@ public class BookController {
         return "form";
     }
 
-    @PostMapping("/{id}")
+    //    @PostMapping("/{id}")
+    @PostMapping("/{id}/edit")
     public String updateBook(@PathVariable long id,
-                             @ModelAttribute("bookForm") BookFormDTO bookFormDTO,
-                             RedirectAttributes redirectAttributes) {
+                             @Validated(Update.class) @ModelAttribute("bookForm") BookFormDTO bookFormDTO,
+                             RedirectAttributes redirectAttributes,
+                             BindingResult bindingResult,
+                             Model model) {
+        System.out.println("BookController.updateBook");
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("bookId", id);
+            return "form";
+        }
         bookService.updateBook(id, bookFormDTO.toEntity());
         redirectAttributes.addFlashAttribute("msg", "%d가 수정되었습니다".formatted(id));
         return "redirect:/books";
