@@ -17,8 +17,14 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public String page(Model model) {
-        model.addAttribute("books", bookService.findAll());
+//    public String page(Model model, @RequestParam(required = false) String keyword) {
+    public String page(Model model, @RequestParam(defaultValue = "") String keyword) {
+//        if (keyword != null) {
+//            model.addAttribute("books", bookService.search(keyword));
+//        } else {
+//            model.addAttribute("books", bookService.findAll());
+//        }
+        model.addAttribute("books", bookService.search(keyword));
         return "index";
     }
 

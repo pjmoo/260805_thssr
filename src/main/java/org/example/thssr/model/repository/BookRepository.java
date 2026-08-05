@@ -14,4 +14,6 @@ public abstract class BookRepository {
     public abstract void deleteById(long id);
 
     public abstract void updateBook(long id, BookEntity entity);
+
+    public abstract List<BookEntity> search(String keyword);
 }

@@ -37,4 +37,8 @@ public class BookService {
     public void updateBook(long id, BookEntity entity) {
         bookRepository.updateBook(id, entity);
     }
+
+    public List<BookEntity> search(String keyword) {
+        return bookRepository.search(keyword);
+    }
 }

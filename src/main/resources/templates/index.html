@@ -16,6 +16,12 @@
 <section th:if="${msg != null}">
     <p th:text="${msg}"></p>
 </section>
+<section>
+    <form>
+        <label>키워드 : <input name="keyword"></label>
+        <button>검색</button>
+    </form>
+</section>
 <section style="display: flex; flex-direction: column; gap: 8px; align-items: start;">
     <div th:each="book : ${books}">
         <p th:text="${book.id}"></p>

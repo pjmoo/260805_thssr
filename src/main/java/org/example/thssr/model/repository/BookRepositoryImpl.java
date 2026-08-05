@@ -36,4 +36,9 @@ public class BookRepositoryImpl extends BookRepository {
         entity.setId(id);
         bookJpaRepository.save(entity);
     }
+
+    @Override
+    public List<BookEntity> search(String keyword) {
+        return bookJpaRepository.findAllByTitleContaining(keyword);
+    }
 }
