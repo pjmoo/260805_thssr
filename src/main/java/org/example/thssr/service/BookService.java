@@ -30,6 +30,11 @@ public class BookService {
 
     @Transactional
     public void deleteBook(long id) {
+        bookRepository.deleteById(id);
+    }
 
+    @Transactional
+    public void updateBook(long id, BookEntity entity) {
+        bookRepository.updateBook(id, entity);
     }
 }

@@ -6,6 +6,7 @@ import org.example.thssr.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -54,9 +55,20 @@ public class BookController {
         return "form";
     }
 
+    @PostMapping("/{id}")
+    public String updateBook(@PathVariable long id,
+                             @ModelAttribute("bookForm") BookFormDTO bookFormDTO,
+                             RedirectAttributes redirectAttributes) {
+        bookService.updateBook(id, bookFormDTO.toEntity());
+        redirectAttributes.addFlashAttribute("msg", "%d가 수정되었습니다".formatted(id));
+        return "redirect:/books";
+    }
+
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable long id,
+                         RedirectAttributes redirectAttributes) {
         bookService.deleteBook(id);
+        redirectAttributes.addFlashAttribute("msg", "%d가 삭제되었습니다".formatted(id));
         return "redirect:/books";
     }
 }

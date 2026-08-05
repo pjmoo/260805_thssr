@@ -10,4 +10,8 @@ public abstract class BookRepository {
     public abstract List<BookEntity> findAll();
 
     public abstract BookEntity findById(long id);
+
+    public abstract void deleteById(long id);
+
+    public abstract void updateBook(long id, BookEntity entity);
 }
